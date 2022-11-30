@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Requests from './pages/Requests';
 import Teams from './pages/Teams';
 import Layout from './layout/Layout';
+import { Provider } from 'react-redux';
 
 import { useEffect } from 'react';
 
