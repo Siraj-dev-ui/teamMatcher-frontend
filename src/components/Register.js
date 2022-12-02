@@ -28,18 +28,18 @@ const Register = () => {
     // }
   };
   return (
-    <div class='w-full h-screen flex justify-center items-center bg-gray-300'>
-      <div class='block p-6 rounded-lg shadow-lg bg-white max-w-md'>
+    <div className='w-full h-screen flex justify-center items-center bg-gray-300'>
+      <div className='block p-6 rounded-lg shadow-lg bg-white max-w-md'>
         <form onSubmit={handleRegister}>
-          <div class='flex flex-row items-center justify-center lg:justify-start'>
-            <p class='text-lg mb-0 mr-4'>Register</p>
+          <div className='flex flex-row items-center justify-center lg:justify-start'>
+            <p className='text-lg mb-0 mr-4'>Register</p>
           </div>
-          <div class='grid grid-cols-2 gap-4'>
-            <div class='form-group mb-6'>
+          <div className='grid grid-cols-2 gap-4'>
+            <div className='form-group mb-6'>
               <input
                 type='text'
                 ref={refFirstName}
-                class='form-control
+                className='form-control
           block
           w-full
           px-3
@@ -59,11 +59,11 @@ const Register = () => {
                 placeholder='First name'
               />
             </div>
-            <div class='form-group mb-6'>
+            <div className='form-group mb-6'>
               <input
                 type='text'
                 ref={refLastName}
-                class='form-control
+                className='form-control
           block
           w-full
           px-3
@@ -84,11 +84,11 @@ const Register = () => {
               />
             </div>
           </div>
-          <div class='form-group mb-6'>
+          <div className='form-group mb-6'>
             <input
               type='email'
               ref={refEmail}
-              class='form-control block
+              className='form-control block
         w-full
         px-3
         py-1.5
@@ -106,11 +106,11 @@ const Register = () => {
               placeholder='Email address'
             />
           </div>
-          <div class='form-group mb-6'>
+          <div className='form-group mb-6'>
             <input
               ref={refPassword}
               type='password'
-              class='form-control block
+              className='form-control block
         w-full
         px-3
         py-1.5
@@ -131,7 +131,7 @@ const Register = () => {
 
           <button
             type='submit'
-            class='
+            className='
       w-full
       px-6
       py-2.5

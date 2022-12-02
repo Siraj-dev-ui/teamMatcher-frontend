@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
 
 const CreateTeam = () => {
   return (
-    <div class="block p-6 rounded-lg bg-white max-w-sm">
-  <form>
-    <div class="form-group mb-6">
-      <input type="text" class="form-control block
+    <div className='block p-6 rounded-lg bg-white max-w-sm'>
+      <form>
+        <div className='form-group mb-6'>
+          <input
+            type='text'
+            className='form-control block
         w-full
         px-3
         py-1.5
@@ -18,11 +20,15 @@ const CreateTeam = () => {
         transition
         ease-in-out
         m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput90"
-        placeholder="Team Name"/>
-    </div>
-    <div class="form-group mb-6">
-      <input type="email" class="form-control block
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+            id='exampleInput90'
+            placeholder='Team Name'
+          />
+        </div>
+        <div className='form-group mb-6'>
+          <input
+            type='email'
+            className='form-control block
         w-full
         px-3
         py-1.5
@@ -35,11 +41,15 @@ const CreateTeam = () => {
         transition
         ease-in-out
         m-0
-        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="exampleInput91"
-        placeholder="Contact"/>
-    </div>
-    
-    <button type="submit" class="
+        focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+            id='exampleInput91'
+            placeholder='Contact'
+          />
+        </div>
+
+        <button
+          type='submit'
+          className='
       w-full
       px-6
       py-2.5
@@ -56,10 +66,13 @@ const CreateTeam = () => {
       active:bg-blue-800 active:shadow-lg
       transition
       duration-150
-      ease-in-out">Save</button>
-  </form>
-</div>
-  )
-}
+      ease-in-out'
+        >
+          Save
+        </button>
+      </form>
+    </div>
+  );
+};
 
-export default CreateTeam
+export default CreateTeam;
