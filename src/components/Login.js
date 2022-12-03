@@ -1,30 +1,48 @@
 import axios from 'axios';
 import React, { useRef } from 'react';
 import { Link, useNavigation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { baserUrl } from '../utils/urls';
+import { setUser } from '../Slices/userSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   // const navigte = useNavigation();
+  const dispatch = useDispatch();
   const refEmail = useRef('');
   const refPassword = useRef('');
   const handleLogin = async (event) => {
     event.preventDefault();
-    console.log('logging in user');
-    const data = {};
+    // console.log('logging in user');
+    let data = {};
     data.email = refEmail.current.value;
     data.password = refPassword.current.value;
 
     try {
       const user = await axios.post(`${baserUrl}/auth/login`, data);
-      console.log('logged in user ', user);
+      console.log('logged in user : ', user.data.user);
+      data = {};
+      if (user) {
+        data._id = user.data.user._id;
+        data.firstName = user.data.user.firstName;
+        data.lastName = user.data.user.lastName;
+        data.email = user.data.user.email;
+        console.log('data before saving : ', data);
+        window.localStorage.setItem('user', JSON.stringify(data));
+        // window.localStorage.setItem('user', JSON.parse(JSON.stringify(data)));
+        // dispatch(setUser(user.data.user));
+      }
       if (user.data.status == 'success') {
-        alert('login successfully...');
+        // alert('login successfully...');
         window.localStorage.setItem('token', user.data.token);
         window.location.reload();
         // navigte.to('');
       }
     } catch (err) {
-      console.log('error in logging in ', err);
+      toast.error('Invalid Email or Password', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
   return (
@@ -132,6 +150,7 @@ const Login = () => {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

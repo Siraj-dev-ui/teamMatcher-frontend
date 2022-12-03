@@ -2,12 +2,33 @@ import React, { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { activeTab } from '../Slices/tabsSlice';
+import { setUser } from '../Slices/userSlice';
+
 import Available from '../components/Available';
 
 const Layout = () => {
-  const activeTab = useSelector((state) => state.tabs.activeTab);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setUser(JSON.parse(window.localStorage.getItem('user'))));
+    // dispatch(setUser(window.localStorage.getItem('user')));
+  }, []);
 
-  console.log('active tab : ', activeTab);
+  const activeTab = useSelector((state) => state.tabs.activeTab);
+  const activeUser = useSelector((state) => state.loginUser.user);
+
+  // console.log('active tab : ', activeTab);
+  console.log('active user : ', activeUser);
+
+  // console.log(
+  //   'local storage user : ',
+  //   JSON.parse(window.localStorage.getItem('user'))
+  // );
+
+  const handleLogout = () => {
+    window.localStorage.removeItem('token');
+    window.localStorage.removeItem('user');
+    window.location.reload();
+  };
   return (
     <>
       <div className='bg-black shadow-lg w-full h-20 flex justify-between items-center'>
@@ -62,7 +83,10 @@ const Layout = () => {
             data-mdb-ripple-color='light'
             className='mx-3 cursor-pointer text-gray-300 text-xl  bg-cyan-700  rounded-full text-center flex justify-center items-center active:bg-cyan-600'
           >
-            <div className='px-4 py-2 text-white font-bold w-full h-full '>
+            <div
+              onClick={handleLogout}
+              className='px-4 py-2 text-white font-bold w-full h-full '
+            >
               Logout
             </div>
           </div>

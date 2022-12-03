@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   user: {},
+  token: '',
 };
 
 export const userSlice = createSlice({
@@ -10,12 +11,22 @@ export const userSlice = createSlice({
   reducers: {
     // getPlayer: () => {},
     setUser: (state, action) => {
+      // console.log('dispatching user', action.payload);
       state.user = action.payload;
+      // console.log(state);
       return state;
     },
     resetUserState: (state) => {
       state.user = {};
 
+      return state;
+    },
+    setToken: (state, action) => {
+      state.token = action.payload;
+      return state;
+    },
+    removeToken: (state) => {
+      state.token = '';
       return state;
     },
     // changePlayerLocation: () => {},
@@ -27,6 +38,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setUser, resetUserState } = userSlice.actions;
+export const { setUser, resetUserState, setToken, removeToken } =
+  userSlice.actions;
 
 export default userSlice.reducer;
