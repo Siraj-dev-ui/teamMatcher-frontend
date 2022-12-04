@@ -9,13 +9,13 @@ const Available = () => {
   const [available, setAvailable] = useState(true);
   const user = useSelector((state) => state.loginUser.user);
   const myTeam = useSelector((state) => state.teams.myTeam);
-  useEffect(() => {
-    socket = io(baserUrl);
-    socket.emit('setup', user._id);
-    // socket.on('connected', () => setSocketConnected(true));
-    // socket.on('typing', () => setIsTyping(true));
-    // socket.on('stop typing', () => setIsTyping(false));
-  }, []);
+  // useEffect(() => {
+  //   socket = io(baserUrl);
+  //   socket.emit('setup', user._id);
+  //   // socket.on('connected', () => setSocketConnected(true));
+  //   // socket.on('typing', () => setIsTyping(true));
+  //   // socket.on('stop typing', () => setIsTyping(false));
+  // }, []);
 
   const handleAvailability = async () => {
     // console.log('emmit availability');
@@ -24,12 +24,19 @@ const Available = () => {
       alert('please create the teams first...');
       return;
     }
+
     setAvailable(!available);
-    const updateAvailable = await axios.post('', { _id: user._id });
-    socket.emit('availability', 'user available');
-    socket.on('emmited', (msg) => {
-      console.log('msg');
+    // const res = await axios.post(`${baserUrl}/user/setAvailability`, {
+    const res = await axios.post('http://localhost:5000/user/setAvailability', {
+      _id: myTeam._id,
+      available: available,
     });
+
+    console.log('res user availability : ', res);
+    // socket.emit('availability', 'user available');
+    // socket.on('emmited', (msg) => {
+    //   console.log('msg');
+    // });
   };
   return (
     <div className='text-white mr-3 flex items-center'>

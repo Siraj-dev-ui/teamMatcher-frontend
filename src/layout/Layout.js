@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useNavigation } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { activeTab } from '../Slices/tabsSlice';
 import { setUser } from '../Slices/userSlice';
@@ -7,6 +7,7 @@ import { setUser } from '../Slices/userSlice';
 import Available from '../components/Available';
 
 const Layout = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setUser(JSON.parse(window.localStorage.getItem('user'))));
@@ -14,10 +15,10 @@ const Layout = () => {
   }, []);
 
   const activeTab = useSelector((state) => state.tabs.activeTab);
-  const activeUser = useSelector((state) => state.loginUser.user);
+  // const activeUser = useSelector((state) => state.loginUser.user);
 
   // console.log('active tab : ', activeTab);
-  console.log('active user : ', activeUser);
+  // console.log('active user : ', activeUser);
 
   // console.log(
   //   'local storage user : ',
@@ -27,6 +28,7 @@ const Layout = () => {
   const handleLogout = () => {
     window.localStorage.removeItem('token');
     window.localStorage.removeItem('user');
+    navigate('/');
     window.location.reload();
   };
   return (

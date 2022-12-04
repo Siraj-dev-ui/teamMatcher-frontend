@@ -1,9 +1,32 @@
+import axios from 'axios';
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setTab } from '../Slices/tabsSlice';
+import { setMyTeam } from '../Slices/teamsSlice';
+import { baserUrl } from '../utils/urls';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+
+  // const myTeam = useSelector((s) => s.teams.myTeam);
+  // const user = useSelector((s) => s.loginUser.user);
+
+  // const getTeam = async () => {
+  //   console.log('get team with id : ', user._id);
+  //   const res = await axios.post(`${baserUrl}/teams/getMyTeam`, {
+  //     // _id: user._id,
+  //     token: window.localStorage.getItem('token'),
+  //   });
+  //   console.log(res);
+
+  //   dispatch(setMyTeam(res.data.myTeam));
+  // };
+  // useEffect(() => {
+  //   if (Object.keys(myTeam).length === 0) {
+  //     console.log('fetching teams');
+  //     getTeam();
+  //   }
+  // }, []);
   useEffect(() => {
     dispatch(setTab('dashboard'));
   });
