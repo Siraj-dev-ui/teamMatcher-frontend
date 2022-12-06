@@ -27,6 +27,9 @@ const CreateTeam = () => {
         alert(res.data.message);
       }
     } catch (err) {
+      if (err.message === 'Network Error') {
+        alert(err.message);
+      }
       console.log('error in creating team : ', err);
     }
   };

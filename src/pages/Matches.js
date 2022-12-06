@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import SendRequest from '../components/SendRequest';
 import { setTab } from '../Slices/tabsSlice';
+import requestsData from '../utils/requestsData';
 
 const Matches = () => {
   //   const [requestType, setRequestType] = useState('sended');
@@ -18,13 +19,16 @@ const Matches = () => {
           <div className=' text-center font-bold text-3xl mb-5'>
             Your Fixtures
           </div>
-          <SendRequest />
-          <SendRequest />
-          <SendRequest />
-          <SendRequest />
-          <SendRequest />
-          <SendRequest />
-          <SendRequest />
+          {requestsData.map((team) => (
+            <SendRequest
+              key={team._id}
+              name={team.name}
+              contact={team.contact}
+              _id={team._id}
+              component={'matches'}
+              dateRecieved={team.date}
+            />
+          ))}
         </div>
       </div>
     </div>

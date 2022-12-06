@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import SendRequest from '../components/SendRequest';
 import { setTab } from '../Slices/tabsSlice';
+import requestsData from '../utils/requestsData';
 
 const Requests = () => {
   const [requestType, setRequestType] = useState('sended');
@@ -39,20 +40,32 @@ const Requests = () => {
         </div>
 
         <div className='bg-white rounded-lg shadow-lg mt-5 p-3'>
-          {requestType == 'sended' ? (
+          {requestType === 'sended' ? (
             <>
-              <SendRequest />
-              <SendRequest />
-              <SendRequest />
-              <SendRequest />
-              <SendRequest />
-              <SendRequest />
-              <SendRequest />
-              <SendRequest />
-              <SendRequest />
+              {requestsData.map((item) => (
+                <SendRequest
+                  key={item._id}
+                  name={item.name}
+                  contact={item.contact}
+                  _id={item._id}
+                  component={'sendedRequests'}
+                  dateRecieved={item.date}
+                />
+              ))}
             </>
           ) : (
-            <>received request</>
+            <>
+              {requestsData.map((item) => (
+                <SendRequest
+                  key={item._id}
+                  name={item.name}
+                  contact={item.contact}
+                  _id={item._id}
+                  component={'receivedRequests'}
+                  dateRecieved={item.date}
+                />
+              ))}
+            </>
           )}
         </div>
       </div>
